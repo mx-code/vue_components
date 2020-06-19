@@ -1,0 +1,69 @@
+{
+  "button": {
+    "comName": "meButton",
+    "valueKey": "text",
+    "remoteKey": "data"
+  },
+  "link": {
+    "comName": "meLink",
+    "valueKey": "text",
+    "remoteKey": "data"
+  },
+  "autocomplete": {
+    "comName": "meAutocomplete",
+    "valueKey": "value"
+  },
+  "cascader": {
+    "comName": "meCascader",
+    "valueKey": "value",
+    "remoteKey": "options"
+  },
+  "checkbox": {
+    "comName": "meCheckbox",
+    "valueKey": "value",
+    "remoteKey": "data"
+  },
+  "date": {
+    "comName": "meDate",
+    "valueKey": "value"
+  },
+  "input": {
+    "comName": "meInput",
+    "valueKey": "value"
+  },
+  "inputNumber": {
+    "comName": "meInputNumber",
+    "valueKey": "value"
+  },
+  "radio": {
+    "comName": "meRadio",
+    "valueKey": "value",
+    "remoteKey": "data"
+  },
+  "rate": {
+    "comName": "meRate",
+    "valueKey": "value"
+  },
+  "select": {
+    "comName": "meSelect",
+    "valueKey": "value",
+    "remoteKey": "options"
+  },
+  "slider": {
+    "comName": "meSlider",
+    "valueKey": "value"
+  },
+  "switch": {
+    "comName": "meSwitch",
+    "valueKey": "value"
+  },
+  "time": {
+    "comName": "meTime",
+    "valueKey": "value"
+  },
+  "upload": {
+    "comName": "meUpload",
+    "valueKey": "fileList",
+    "remoteKey": "data"
+  }
+}

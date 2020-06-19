@@ -1,0 +1,18 @@
+{
+  "requireConfig": false,
+  "arrowParens": "always",
+  "bracketSpacing": true,
+  "endOfLine": "lf",
+  "htmlWhitespaceSensitivity": "css",
+  "jsxBracketSameLine": true,
+  "quoteProps": "as-needed",
+  "jsxSingleQuote": true,
+  "useTabs": false,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "trailingComma": "none",
+  "semi": true,
+  "vueIndentScriptAndStyle": false,
+  "useEditorConfig": true,
+  "eslintIntegration": true
+}
