@@ -16,7 +16,8 @@ export default function download(content, fileName, opts = {}) {
   reader.readAsText(content, 'utf-8');
   reader.onload = function() {
     const blobData = Object.toJson(this.result);
-    if (!blobData) {
+
+    if (!blobData || String(blobData) === String(this.result)) {
       const { date } = opts,
         resultFileName = date
           ? fileName.replace(
