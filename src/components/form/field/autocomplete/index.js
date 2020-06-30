@@ -1,16 +1,11 @@
-import meAutocomplete from './source';
-
-import { props, sourceProps } from './props.config';
+import props from './props.config';
 
 export default {
-  components: {
-    meAutocomplete
-  },
   props,
   render() {
     const self = this,
       { $scopedSlots, $slots, $props } = self,
-      attrs = $props.cover(Object.keys(sourceProps)),
+      attrs = $props,
       scopedSlots = {
         default: $scopedSlots.default
       };
@@ -22,7 +17,8 @@ export default {
         scopedSlots={scopedSlots}
         on-input={self.onInput}
         on-select={self.onSelect}
-        on-change={self.onChange}>
+        on-change={self.onChange}
+      >
         <template slot='prefix'>{$slots.prefix}</template>
         <template slot='suffix'>{$slots.suffix}</template>
         <template slot='prepend'>{$slots.prepend}</template>

@@ -1,23 +1,23 @@
-import meUpload from './source';
+import { Upload } from 'element-ui';
 
-import { props, sourceProps } from './props.config';
+import props from './props.config';
 
 export default {
   components: {
-    meUpload
+    elUpload: Upload
   },
   props,
   render() {
     const self = this,
-      { $slots, $props } = self,
-      attrs = $props.cover(Object.keys(sourceProps));
+      { $slots } = self,
+      attrs = self.$props;
 
     return (
-      <me-upload ref='upload' attrs={attrs}>
+      <el-upload ref='upload' attrs={attrs}>
         {$slots.default}
         <template slot='trigger'>{$slots.trigger}</template>
         <template slot='tip'>{$slots.tip}</template>
-      </me-upload>
+      </el-upload>
     );
   }
 };

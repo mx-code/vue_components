@@ -1,5 +1,3 @@
-import { props } from './middleware/props.config';
-
 const meLink = () => import('./middleware');
 
 export default {
@@ -7,7 +5,7 @@ export default {
     meLink
   },
   props: {
-    data: [ Array, Object ],
+    data: [Array, Object],
     text: String,
     isSub: {
       type: Boolean,
@@ -16,20 +14,21 @@ export default {
   },
   render() {
     const self = this,
-      { $slots, data = {},text } = self,
-      keys = Object.keys(props);
+      { data = {}, text } = self;
 
     const getContent = (args, text) => (
-      <me-link attrs={args.cover(keys)} on-click={(event) => self.onClick(args, event)}>
+      <me-link attrs={args} on-click={(event) => self.onClick(args, event)}>
         {text}
       </me-link>
     );
 
     if (Array.isArray(data)) {
-      return <div class='me-link--group'>{data.map((item) => getContent(item))}</div>;
+      return (
+        <div class='me-link--group'>{data.map((item) => getContent(item))}</div>
+      );
     }
 
-    return getContent(data, $slots.default || text);
+    return getContent(data, self.$slots.default || text);
   },
   methods: {
     onClick(args, event) {

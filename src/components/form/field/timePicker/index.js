@@ -1,37 +1,36 @@
-import meTimePicker from './source';
+import { TimePicker } from 'element-ui';
 
-import { props, sourceProps } from './props.config';
+import props from './props.config';
 
 export default {
   components: {
-    meTimePicker
+    elTimePicker: TimePicker
   },
   props,
   render() {
     const self = this,
-      { $props } = self,
-      attrs = $props.cover(Object.keys(sourceProps));
+      attrs = self.$props;
 
     return (
-      <me-time-picker
+      <el-time-picker
         ref='timePicker'
         attrs={attrs}
         on-input={self.onInput}
         on-change={self.onChange}
         on-blur={self.onBlur}
-        on-focus={self.onFocus}></me-time-picker>
+        on-focus={self.onFocus}
+      ></el-time-picker>
     );
   },
   methods: {
     onInput(value) {
-      this.$emit('update:value', value);
-      this.$emit('input', value);
+      this.$updateValue(value);
     },
     onChange(value) {
       this.$subCallback(
         {
           default: 'change',
-          sub: 'changeForTimePicker'
+          sub: 'changeForTime'
         },
         { value }
       );
@@ -40,7 +39,7 @@ export default {
       this.$subCallback(
         {
           default: 'blur',
-          sub: 'blurForTimePicker'
+          sub: 'blurForTime'
         },
         { event }
       );
@@ -49,7 +48,7 @@ export default {
       this.$subCallback(
         {
           default: 'focus',
-          sub: 'focusForTimePicker'
+          sub: 'focusForTime'
         },
         { event }
       );

@@ -1,12 +1,12 @@
 export default {
   size: {
     type: String,
-    validator: (value) => [ 'medium', 'small', 'mini' ].includes(value)
+    validator: (value) => ['medium', 'small', 'mini'].includes(value)
   },
   type: {
     type: String,
     validator: (value) =>
-      [ 'primary', 'success', 'warning', 'danger', 'info', 'text' ].includes(
+      ['primary', 'success', 'warning', 'danger', 'info', 'text'].includes(
         value
       )
   },
@@ -38,6 +38,9 @@ export default {
   nativeType: {
     type: String,
     default: 'button',
-    validator: (value) => [ 'button', 'submit', 'reset' ].includes(value)
-  }
+    validator: (value) => ['button', 'submit', 'reset'].includes(value)
+  },
+  text: String,
+  icon: String,
+  appendIcon: String
 };

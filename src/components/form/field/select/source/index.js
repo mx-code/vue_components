@@ -9,8 +9,8 @@ export default {
   props,
   render() {
     const self = this,
-      { $slots, $props } = self,
-      attrs = $props.toCopy();
+      { $slots } = self,
+      attrs = self.$props;
 
     return (
       <el-select
@@ -22,7 +22,8 @@ export default {
         on-remove-tag={self.onRemoveTag}
         on-clear={self.onClear}
         on-blur={self.onBlur}
-        on-focus={self.onFocus}>
+        on-focus={self.onFocus}
+      >
         {$slots.default}
         <template slot='prefix'>{$slots.prefix}</template>
         <template slot='empty'>{$slots.empty}</template>

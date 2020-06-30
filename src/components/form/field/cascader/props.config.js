@@ -1,15 +1,45 @@
-import sourceProps from './source/props.config';
-import panelProps from './panel/props.config';
-
-const props = {}.toCopy(sourceProps, panelProps, {
-  type: {
+export default {
+  value: true,
+  options: Array,
+  props: Object,
+  size: {
     type: String,
-    validator: (value) => [ 'panel' ].includes(value)
+    validator: (value) => ['medium', 'small', 'mini'].includes(value)
   },
-  isSub: {
+  placeholder: {
+    type: String,
+    default: '请选择'
+  },
+  disabled: {
+    type: Boolean,
+    default: false
+  },
+  clearable: {
+    type: Boolean,
+    default: false
+  },
+  showAllLevels: {
     type: Boolean,
     default: true
+  },
+  collapseTags: {
+    type: Boolean,
+    default: false
+  },
+  separator: {
+    type: String,
+    default: '/'
+  },
+  filterable: Boolean,
+  filterMethod: Function,
+  debounce: {
+    type: Number,
+    default: 300
+  },
+  beforeFilter: Function,
+  popperClass: String,
+  isSub: {
+    type: Boolean,
+    default: false
   }
-});
-
-export { props, sourceProps, panelProps };
+};

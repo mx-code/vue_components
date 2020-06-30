@@ -9,12 +9,11 @@ export default {
   props,
   render() {
     const self = this,
-      { $slots, $props } = self,
-      attrs = $props.toCopy();
+      attrs = self.$props;
 
     return (
       <el-dropdown-item class='me-dropdown-item' attrs={attrs}>
-        {$slots.default}
+        {self.$slots.default}
       </el-dropdown-item>
     );
   }

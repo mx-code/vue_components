@@ -1,7 +1,3 @@
-import groupProps from './group/props.config';
-import sourceProps from './source/props.config';
-import buttonProps from './button/props.config';
-
 const meCheckboxGroup = () => import('./group'),
   meCheckbox = () => import('./source'),
   meCheckboxButton = () => import('./button');
@@ -13,13 +9,13 @@ export default {
     meCheckboxButton
   },
   props: {
-    value: [ String, Number, Boolean, Array ],
-    data: [ Array, Object ],
+    value: [String, Number, Boolean, Array],
+    data: [Array, Object],
     groupOpts: Object,
     type: {
       type: String,
       default: 'checkbox',
-      validator: (value) => [ 'checkbox', 'button' ].includes(value)
+      validator: (value) => ['checkbox', 'button'].includes(value)
     },
     labelKey: {
       type: String,
@@ -36,56 +32,42 @@ export default {
   },
   render() {
     const self = this,
-      {
-        $slots,
-        value,
-        data = {},
-        groupOpts = {},
-        type,
-        labelKey,
-        textKey
-      } = self,
-      checkboxKeys = Object.keys(sourceProps);
+      { value, data = {}, groupOpts = {}, type, labelKey, textKey } = self;
 
     if (Array.isArray(data)) {
-      const groupAttrs = groupOpts.cover(Object.keys(groupProps)),
-        buttonKeys = Object.keys(buttonProps);
-
       return (
         <me-checkbox-group
-          attrs={groupAttrs}
+          attrs={groupOpts}
           value={value}
-          on-input={self.onInput}>
+          on-input={self.onInput}
+        >
           {data.map((item) => {
             const attrs =
-              typeof item === 'string' ? { label: item } : item.toCopy();
+              typeof item === 'string' ? { label: item } : { ...item };
             attrs.label = attrs[labelKey];
             return type === 'button' ? (
-              <me-checkbox-button attrs={attrs.cover(buttonKeys)}>
+              <me-checkbox-button attrs={attrs}>
                 {attrs[textKey]}
               </me-checkbox-button>
             ) : (
-              <me-checkbox attrs={attrs.cover(checkboxKeys)}>
-                {attrs[textKey]}
-              </me-checkbox>
+              <me-checkbox attrs={attrs}>{attrs[textKey]}</me-checkbox>
             );
           })}
         </me-checkbox-group>
       );
     }
 
-    const attrs = data.cover(checkboxKeys);
+    const attrs = data;
     attrs.label = attrs[labelKey];
     return (
       <me-checkbox attrs={attrs} value={value} on-input={self.onInput}>
-        {$slots.default || data[textKey]}
+        {self.$slots.default || data[textKey]}
       </me-checkbox>
     );
   },
   methods: {
     onInput(value) {
-      this.$emit('update:value', value);
-      this.$emit('input', value);
+      this.$updateValue(value);
       this.$subCallback(
         {
           default: 'change',

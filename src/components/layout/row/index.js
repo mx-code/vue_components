@@ -9,9 +9,8 @@ export default {
   props,
   render() {
     const self = this,
-      { $slots, $props } = self,
-      attrs = $props.toCopy();
+      attrs = self.$props;
 
-    return <el-row attrs={attrs}>{$slots.default}</el-row>;
+    return <el-row attrs={attrs}>{self.$slots.default}</el-row>;
   }
 };

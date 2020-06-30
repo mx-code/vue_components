@@ -1,28 +1,49 @@
-import meDialog from './source';
+import { Dialog } from 'element-ui';
 
-import props from './source/props.config';
+import props from './props.config';
 
 export default {
   components: {
-    meDialog
+    elDialog: Dialog
   },
-  props: {}.toCopy(props),
+  props,
   render() {
     const self = this,
-      { $slots, $props } = self,
-      attrs = $props.toCopy();
+      { $slots } = self,
+      attrs = self.$props;
 
     return (
-      <me-dialog class='me-dialog' attrs={attrs} on-before-close={() => self.onBeforeClose('cancel')}>
-        <slot name='title'>{$slots.title}</slot>
+      <el-dialog
+        class='me-dialog'
+        attrs={attrs}
+        beforeClose={self.onBeforeClose}
+      >
         {$slots.default}
+        <slot name='title'>{$slots.title}</slot>
         <slot name='footer'>{$slots.footer}</slot>
-      </me-dialog>
+      </el-dialog>
     );
   },
   methods: {
-    onBeforeClose(action){
-      this.$emit('before-close',action);
+    onBeforeClose(hide) {
+      this.$emit('before-close', hide);
     }
+    // 用到再开启
+    // on-open={self.onOpen}
+    //     on-opened={self.onOpened}
+    //     on-close={self.onClose}
+    //     on-closed={self.onClosed}
+    // onOpen() {
+    //   this.$emit('open');
+    // },
+    // onOpened() {
+    //   this.$emit('opened');
+    // },
+    // onClose() {
+    //   this.$emit('close');
+    // },
+    // onClosed() {
+    //   this.$emit('closed');
+    // }
   }
 };

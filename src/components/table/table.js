@@ -1,8 +1,5 @@
 import meTable from './source';
 
-import tableProps from './source/props.config';
-import { props as columnProps } from './column/props.config';
-
 const meTableColumn = () => import('./column'),
   mePagination = () => import('@/components/pagination');
 
@@ -28,8 +25,6 @@ export default {
         tableOpts,
         pagination
       } = self,
-      tableAttrs = tableOpts?.cover(Object.keys(tableProps)),
-      columnKeys = Object.keys(columnProps),
       scopedSlots = {
         default: $scopedSlots.content
       };
@@ -38,7 +33,7 @@ export default {
       <div class='me-table-wrap'>
         <me-table
           ref='table'
-          attrs={tableAttrs}
+          attrs={tableOpts}
           data={data}
           on-select={self.onSelect}
           on-select-all={self.onSelectAll}
@@ -63,7 +58,7 @@ export default {
             : columns.map((item) => (
                 <me-table-column
                   key={item.key || item.prop || item.label}
-                  attrs={item.cover(columnKeys)}
+                  attrs={item}
                   scopedSlots={scopedSlots}
                 ></me-table-column>
               ))}

@@ -1,23 +1,21 @@
-import meRate from './source';
+import { Rate } from 'element-ui';
 
-import { props, sourceProps } from './props.config';
+import props from './props.config';
 
 export default {
   components: {
-    meRate
+    elRate: Rate
   },
   props,
   render() {
     const self = this,
-      { $props } = self,
-      attrs = $props.cover(Object.keys(sourceProps));
+      attrs = self.$props;
 
-    return <me-rate attrs={attrs} on-change={self.onChange}></me-rate>;
+    return <el-rate attrs={attrs} on-change={self.onChange}></el-rate>;
   },
   methods: {
     onChange(value) {
-      this.$emit('update:value', value);
-      this.$emit('input', value);
+      this.$updateValue(value);
       this.$subCallback(
         {
           default: 'change',

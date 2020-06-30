@@ -1,31 +1,30 @@
-import meInputNumber from './source';
+import { InputNumber } from 'element-ui';
 
-import { props, sourceProps } from './props.config';
+import props from './props.config';
 
 export default {
   components: {
-    meInputNumber
+    elInputNumber: InputNumber
   },
   props,
   render() {
     const self = this,
-      { $props } = self,
-      attrs = $props.cover(Object.keys(sourceProps));
+      attrs = self.$props;
 
     return (
-      <me-input-number
+      <el-input-number
         ref='inputNumber'
         attrs={attrs}
         on-input={self.onInput}
         on-change={self.onChange}
         on-blur={self.onBlur}
-        on-focus={self.onFocus}></me-input-number>
+        on-focus={self.onFocus}
+      ></el-input-number>
     );
   },
   methods: {
     onInput(value) {
-      this.$emit('update:value', value);
-      this.$emit('input', value);
+      this.$updateValue(value);
     },
     onChange(currentValue, oldValue) {
       this.$subCallback(

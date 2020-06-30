@@ -9,8 +9,7 @@ export default {
   props,
   render() {
     const self = this,
-      { $slots, $props } = self,
-      attrs = $props.toCopy();
+      attrs = self.$props;
 
     return (
       <el-form
@@ -19,12 +18,12 @@ export default {
         attrs={attrs}
         on-submit={self.onSubmit}
       >
-        {$slots.default}
+        {self.$slots.default}
       </el-form>
     );
   },
   methods: {
-    onSubmit(event){
+    onSubmit(event) {
       event.preventDefault();
     }
   }

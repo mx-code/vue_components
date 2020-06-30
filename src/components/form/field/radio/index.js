@@ -1,7 +1,3 @@
-import groupProps from './group/props.config';
-import sourceProps from './source/props.config';
-import buttonProps from './button/props.config';
-
 const meRadioGroup = () => import('./group'),
   meRadio = () => import('./source'),
   meRadioButton = () => import('./button');
@@ -13,8 +9,8 @@ export default {
     meRadioButton
   },
   props: {
-    value: [ String, Number, Boolean ],
-    data: [ Array, Object ],
+    value: [String, Number, Boolean],
+    data: [Array, Object],
     groupOpts: Object,
     labelKey: {
       type: String,
@@ -27,7 +23,7 @@ export default {
     type: {
       type: String,
       default: 'radio',
-      validator: (value) => [ 'radio', 'button' ].includes(value)
+      validator: (value) => ['radio', 'button'].includes(value)
     },
     isSub: {
       type: Boolean,
@@ -36,40 +32,36 @@ export default {
   },
   render() {
     const self = this,
-      { $slots, value, data = {}, groupOpts = {}, type, labelKey, textKey } = self,
-      radioKeys = Object.keys(sourceProps);
+      { value, data = {}, groupOpts = {}, type, labelKey, textKey } = self;
 
     if (Array.isArray(data)) {
-      const groupAttrs = groupOpts.cover(Object.keys(groupProps)),
-        buttonKeys = Object.keys(buttonProps);
-
       return (
-        <me-radio-group attrs={groupAttrs} value={value} on-input={self.onInput}>
+        <me-radio-group attrs={groupOpts} value={value} on-input={self.onInput}>
           {data.map((item) => {
-            const attrs = typeof item === 'string' ? { label: item } : item.toCopy();
+            const attrs =
+              typeof item === 'string' ? { label: item } : { ...item };
             attrs.label = attrs[labelKey];
             return type === 'button' ? (
-              <me-radio-button attrs={attrs.cover(buttonKeys)}>{attrs[textKey]}</me-radio-button>
+              <me-radio-button attrs={attrs}>{attrs[textKey]}</me-radio-button>
             ) : (
-              <me-radio attrs={attrs.cover(radioKeys)}>{attrs[textKey]}</me-radio>
+              <me-radio attrs={attrs}>{attrs[textKey]}</me-radio>
             );
           })}
         </me-radio-group>
       );
     }
 
-    const attrs = data.cover(radioKeys);
+    const attrs = data;
     attrs.label = attrs[labelKey];
     return (
       <me-radio attrs={attrs} value={value} on-input={self.onInput}>
-        {$slots.default || data[textKey]}
+        {self.$slots.default || data[textKey]}
       </me-radio>
     );
   },
   methods: {
     onInput(value) {
-      this.$emit('update:value', value);
-      this.$emit('input', value);
+      this.$updateValue(value);
       this.$subCallback(
         {
           default: 'change',

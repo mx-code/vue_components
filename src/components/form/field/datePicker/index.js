@@ -1,28 +1,32 @@
-import meDatePicker from './source';
+import { DatePicker } from 'element-ui';
 
-import { props, sourceProps } from './props.config';
+import props from './props.config';
 
 export default {
   components: {
-    meDatePicker
+    elDatePicker: DatePicker
   },
   props,
   render() {
     const self = this,
-      { $props } = self,
-      attrs = $props.cover(Object.keys(sourceProps));
+      attrs = self.$props;
 
     return (
-      <me-date-picker
+      <el-date-picker
         ref='datePicker'
         attrs={attrs}
         on-input={self.onInput}
         on-change={self.onChange}
         on-blur={self.onBlur}
-        on-focus={self.onFocus}></me-date-picker>
+        on-focus={self.onFocus}
+      ></el-date-picker>
     );
   },
-
+  mounted() {
+    // 防止时间格式错误
+    const date = new Date(this.value);
+    date.toString() === 'Invalid Date' && this.onInput('');
+  },
   methods: {
     onInput(value) {
       this.$updateValue(value);
@@ -31,7 +35,7 @@ export default {
       this.$subCallback(
         {
           default: 'change',
-          sub: 'changeForDatePicker'
+          sub: 'changeForDate'
         },
         { value }
       );
@@ -40,7 +44,7 @@ export default {
       this.$subCallback(
         {
           default: 'blur',
-          sub: 'blurForDatePicker'
+          sub: 'blurForDate'
         },
         { event }
       );
@@ -49,7 +53,7 @@ export default {
       this.$subCallback(
         {
           default: 'focus',
-          sub: 'focusForDatePicker'
+          sub: 'focusForDate'
         },
         { event }
       );

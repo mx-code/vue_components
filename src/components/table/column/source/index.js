@@ -17,9 +17,7 @@ export default {
       };
 
     return (
-      <el-table-column
-        attrs={attrs}
-        scopedSlots={scopedSlots}>
+      <el-table-column attrs={attrs} scopedSlots={scopedSlots}>
         {$slots.default}
       </el-table-column>
     );

@@ -1,8 +1,6 @@
 import meSelect from './source';
 
-import { props, sourceProps } from './props.config';
-import optionGroupProps from './optionGroup/props.config';
-import optionProps from './option/props.config';
+import { props } from './props.config';
 
 const meOptionGroup = () => import('./optionGroup'),
   meOption = () => import('./option');
@@ -16,13 +14,12 @@ export default {
   props,
   render() {
     const self = this,
-      { $slots, $props, options = [],labelKey,valueKey } = self,
-      attrs = $props.cover(Object.keys(sourceProps)),
-      groupKeys = Object.keys(optionGroupProps),
-      optionKeys = Object.keys(optionProps);
+      { $slots, options = [], labelKey, valueKey } = self,
+      attrs = self.$props;
 
     const getOption = (args) => {
-      const attrs = typeof args === 'string' ? {label: args,value: args} : args.cover(optionKeys);
+      const attrs =
+        typeof args === 'string' ? { label: args, value: args } : { ...args };
       attrs.label = attrs[labelKey];
       attrs.value = attrs[valueKey];
 
@@ -38,18 +35,19 @@ export default {
         on-remove-tag={self.onRemoveTag}
         on-clear={self.onClear}
         on-blur={self.onBlur}
-        on-focus={self.onFocus}>
+        on-focus={self.onFocus}
+      >
         {$slots.default
           ? $slots.default
           : options.map((item) =>
-            item.children ? (
-              <me-option-group attrs={item.cover(groupKeys)}>
-                {item.children.map((cItem) => getOption(cItem))}
-              </me-option-group>
-            ) : (
-              getOption(item)
-            )
-          )}
+              item.children ? (
+                <me-option-group attrs={item}>
+                  {item.children.map((cItem) => getOption(cItem))}
+                </me-option-group>
+              ) : (
+                getOption(item)
+              )
+            )}
       </me-select>
     );
   },

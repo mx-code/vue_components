@@ -5,16 +5,16 @@
   </div>
 </template>
 <script>
-import meInput from '@/components/form/field/input/source';
+  import meInput from '@/components/form/field/input';
 
-export default {
-  components: {
-    meInput
-  },
-  data() {
-    return {
-      value: ''
-    };
-  }
-};
+  export default {
+    components: {
+      meInput
+    },
+    data() {
+      return {
+        value: ''
+      };
+    }
+  };
 </script>

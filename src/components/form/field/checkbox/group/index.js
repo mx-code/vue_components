@@ -9,12 +9,11 @@ export default {
   props,
   render() {
     const self = this,
-      { $slots, $props } = self,
-      attrs = $props.toCopy();
+      attrs = self.$props;
 
     return (
       <el-checkbox-group attrs={attrs} on-input={self.onInput}>
-        {$slots.default}
+        {self.$slots.default}
       </el-checkbox-group>
     );
   },

@@ -9,12 +9,11 @@ export default {
   props,
   render() {
     const self = this,
-      { $slots, $props } = self,
-      attrs = $props.toCopy();
+      attrs = self.$props;
 
     return (
       <el-link attrs={attrs} on-click={(event) => self.$emit('click', event)}>
-        {$slots.default}
+        {self.$slots.default}
       </el-link>
     );
   }

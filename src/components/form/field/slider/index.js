@@ -1,28 +1,27 @@
-import meSlider from './source';
+import { Slider } from 'element-ui';
 
-import { props, sourceProps } from './props.config';
+import props from './props.config';
 
 export default {
   components: {
-    meSlider
+    elSlider: Slider
   },
   props,
   render() {
     const self = this,
-      { $props } = self,
-      attrs = $props.cover(Object.keys(sourceProps));
+      attrs = self.$props;
 
     return (
-      <me-slider
+      <el-slider
         attrs={attrs}
         on-input={self.onInput}
-        on-change={self.onChange}></me-slider>
+        on-change={self.onChange}
+      ></el-slider>
     );
   },
   methods: {
     onInput(value) {
-      this.$emit('update:value', value);
-      this.$emit('input', value);
+      this.$updateValue(value);
     },
     onChange(value) {
       this.$subCallback(

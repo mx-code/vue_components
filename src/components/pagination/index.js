@@ -1,24 +1,24 @@
-import mePagination from './source';
+import { Pagination } from 'element-ui';
 
-import { props, sourceProps } from './props.config';
+import props from './props.config';
 
 export default {
   components: {
-    mePagination
+    elPagination: Pagination
   },
   props,
   render() {
     const self = this,
-      { $slots, $props } = self,
-      attrs = $props.cover(Object.keys(sourceProps));
+      attrs = self.$props;
 
     return (
-      <me-pagination
+      <el-pagination
         attrs={attrs}
         on-size-change={self.onSizeChange}
-        on-current-change={self.onCurrentChange}>
-        {$slots.default}
-      </me-pagination>
+        on-current-change={self.onCurrentChange}
+      >
+        {self.$slots.default}
+      </el-pagination>
     );
   },
   methods: {
@@ -28,5 +28,14 @@ export default {
     onCurrentChange(num) {
       this.$emit('current-change', num);
     }
+    //废弃 需要再启用
+    // on-prev-click={self.onPrevClick}
+    //     on-next-click={self.onNextClick}
+    // onPrevClick(num) {
+    //   this.$emit('prev-click', num);
+    // },
+    // onNextClick(num) {
+    //   this.$emit('next-click', num);
+    // }
   }
 };

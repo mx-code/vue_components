@@ -10,7 +10,7 @@ export default {
   render() {
     const self = this,
       { $slots, $props } = self,
-      attrs = $props.toCopy();
+      attrs = { ...$props };
 
     return (
       <el-table
@@ -33,7 +33,8 @@ export default {
         on-filter-change={self.onFilterChange}
         on-current-change={self.onCurrentChange}
         on-header-dragend={self.onHeaderDragend}
-        on-expand-change={self.onExpandChange}>
+        on-expand-change={self.onExpandChange}
+      >
         {$slots.default}
         <slot name='append'>{$slots.append}</slot>
       </el-table>

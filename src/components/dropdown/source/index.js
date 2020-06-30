@@ -9,8 +9,8 @@ export default {
   props,
   render() {
     const self = this,
-      { $slots, $props } = self,
-      attrs = $props.toCopy();
+      { $slots } = self,
+      attrs = self.$props;
 
     return (
       <el-dropdown
@@ -18,7 +18,8 @@ export default {
         attrs={attrs}
         on-click={self.onClick}
         on-command={self.onCommand}
-        on-visible-change={self.onVisibleChange}>
+        on-visible-change={self.onVisibleChange}
+      >
         {$slots.default}
         <slot name='dropdown'>{$slots.dropdown}</slot>
       </el-dropdown>

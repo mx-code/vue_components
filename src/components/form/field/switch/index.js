@@ -1,29 +1,28 @@
-import meSwitch from './source';
+import { Switch } from 'element-ui';
 
-import { props, sourceProps } from './props.config';
+import props from './props.config';
 
 export default {
   components: {
-    meSwitch
+    elSwitch: Switch
   },
   props,
   render() {
     const self = this,
-      { $props } = self,
-      attrs = $props.cover(Object.keys(sourceProps));
+      attrs = self.$props;
 
     return (
-      <me-switch
+      <el-switch
         ref='switch'
         attrs={attrs}
         on-input={self.onInput}
-        on-change={self.onChange}></me-switch>
+        on-change={self.onChange}
+      ></el-switch>
     );
   },
   methods: {
     onInput(value) {
-      this.$emit('update:value', value);
-      this.$emit('input', value);
+      this.$updateValue(value);
     },
     onChange(value) {
       this.$subCallback(

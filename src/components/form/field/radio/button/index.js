@@ -9,9 +9,10 @@ export default {
   props,
   render() {
     const self = this,
-      { $slots, $props } = self,
-      attrs = $props.toCopy();
+      attrs = self.$props;
 
-    return <el-radio-button attrs={attrs}>{$slots.default}</el-radio-button>;
+    return (
+      <el-radio-button attrs={attrs}>{self.$slots.default}</el-radio-button>
+    );
   }
 };

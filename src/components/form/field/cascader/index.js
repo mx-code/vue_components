@@ -1,32 +1,23 @@
-import { props, sourceProps, panelProps } from './props.config';
+import { Cascader } from 'element-ui';
 
-const meCascader = () => import('./source'),
-  meCascaderPanel = () => import('./panel');
+import props from './props.config';
 
 export default {
   components: {
-    meCascader,
-    meCascaderPanel
+    elCascader: Cascader
   },
   props,
   render() {
     const self = this,
-      { $scopedSlots, $slots, $props, type } = self,
-      attrs = $props.cover(Object.keys(sourceProps)),
-      panelAttrs = $props.cover(Object.keys(panelProps)),
+      { $scopedSlots, $slots } = self,
+      attrs = self.$props,
       scopedSlots = {
         default: $scopedSlots.default
       };
 
-    return type === 'panel' ? (
-      <me-cascader-panel
-        attrs={panelAttrs}
-        scopedSlots={scopedSlots}
-        on-input={self.onInput}
-        on-change={self.onChange}
-        on-expand-change={self.onExpandChange}></me-cascader-panel>
-    ) : (
-      <me-cascader
+    return (
+      <el-cascader
+        ref='cascader'
         attrs={attrs}
         scopedSlots={scopedSlots}
         on-input={self.onInput}
@@ -35,9 +26,10 @@ export default {
         on-blur={self.onBlur}
         on-focus={self.onFocus}
         on-visible-change={self.onVisibleChange}
-        on-remove-tag={self.onRemoveTag}>
+        on-remove-tag={self.onRemoveTag}
+      >
         <template slot='empty'>{$slots.empty}</template>
-      </me-cascader>
+      </el-cascader>
     );
   },
   methods: {
@@ -56,7 +48,7 @@ export default {
     onExpandChange(pArr) {
       this.$subCallback(
         {
-          default: 'expandChange',
+          default: 'expand-change',
           sub: 'expandChangeForCascader'
         },
         { pArr }
@@ -83,7 +75,7 @@ export default {
     onVisibleChange(isShow) {
       this.$subCallback(
         {
-          default: 'visibleChange',
+          default: 'visible-change',
           sub: 'visibleChangeForCascader'
         },
         { isShow }
@@ -92,7 +84,7 @@ export default {
     onRemoveTag(tag) {
       this.$subCallback(
         {
-          default: 'removeTag',
+          default: 'remove-tag',
           sub: 'removeTagForCascader'
         },
         { tag }

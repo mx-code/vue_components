@@ -1,37 +1,37 @@
-import meInput from './source';
+import { Input } from 'element-ui';
 
-import { props, sourceProps } from './props.config';
+import props from './props.config';
 
 export default {
   components: {
-    meInput
+    elInput: Input
   },
   props,
   render() {
     const self = this,
-      { $slots, $props } = self,
-      attrs = $props.cover(Object.keys(sourceProps));
+      { $slots } = self,
+      attrs = self.$props;
 
     return (
-      <me-input
+      <el-input
         ref='input'
         attrs={attrs}
         on-input={self.onInput}
         on-blur={self.onBlur}
         on-focus={self.onFocus}
         on-change={self.onChange}
-        on-clear={self.onClear}>
+        on-clear={self.onClear}
+      >
         <template slot='prefix'>{$slots.prefix}</template>
         <template slot='suffix'>{$slots.suffix}</template>
         <template slot='prepend'>{$slots.prepend}</template>
         <template slot='append'>{$slots.append}</template>
-      </me-input>
+      </el-input>
     );
   },
   methods: {
     onInput(value) {
-      this.$emit('update:value', value);
-      this.$emit('input', value);
+      this.$updateValue(value);
     },
     onBlur(event) {
       this.$subCallback(

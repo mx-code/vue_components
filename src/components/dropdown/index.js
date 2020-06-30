@@ -1,7 +1,6 @@
 import { DropdownMenu } from 'element-ui';
 
-import {props,dropdownProps} from './props.config';
-import dropdownItemProps from './menuItem/props.config';
+import props from './props.config';
 
 const meDropdown = () => import('./source'),
   meDropdownItem = () => import('./menuItem');
@@ -15,25 +14,23 @@ export default {
   props,
   render() {
     const self = this,
-      { $slots, $props, data = [], value } = self,
-      attrs = $props.cover(Object.keys(dropdownProps)),
-      menuItemKeys = Object.keys(dropdownItemProps);
+      { $slots, data = [], value } = self,
+      attrs = self.$props;
 
     return (
       <me-dropdown
         attrs={attrs}
         on-click={self.onClick}
         on-command={self.onCommand}
-        on-visible-change={self.onVisibleChange}>
+        on-visible-change={self.onVisibleChange}
+      >
         <div class='me-dropdown__text'>{$slots.default || value}</div>
         {$slots.dropdown ? (
           $slots.dropdown
         ) : data.length ? (
           <el-dropdown-menu class='me-dropdown-menu'>
             {data.map((item) => (
-              <me-dropdown-item attrs={item.cover(menuItemKeys)}>
-                {item.text}
-              </me-dropdown-item>
+              <me-dropdown-item attrs={item}>{item.text}</me-dropdown-item>
             ))}
           </el-dropdown-menu>
         ) : undefined}

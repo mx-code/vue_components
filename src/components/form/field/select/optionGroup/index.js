@@ -9,9 +9,10 @@ export default {
   props,
   render() {
     const self = this,
-      { $slots, $props } = self,
-      attrs = $props.toCopy();
+      attrs = self.$props;
 
-    return <el-option-group attrs={attrs}>{$slots.default}</el-option-group>;
+    return (
+      <el-option-group attrs={attrs}>{self.$slots.default}</el-option-group>
+    );
   }
 };
