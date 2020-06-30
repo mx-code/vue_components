@@ -1,0 +1,42 @@
+{
+  "editor.fontSize": 12,
+  "emmet.includeLanguages": {
+    "vue-html": "vue",
+    "javascript": "javascriptreact",
+    "wxml": "html"
+  },
+  "emmet.triggerExpansionOnTab": true,
+  "emmet.showSuggestionsAsSnippets": true,
+  "editor.suggestSelection": "first",
+  "vsintellicode.modify.editor.suggestSelection": "automaticallyOverrodeDefaultValue",
+  "editor.wordWrap": "on",
+  // 自动格式化
+  "vetur.format.enable": false, // 关闭vetur格式化
+  "eslint.enable": true, // 开启eslint提示
+  // "eslint.run": "onSave", // 不开启eslint格式化 仅开启提示
+  "eslint.alwaysShowStatus": true,
+  "editor.formatOnSave": true,
+  // "editor.codeActionsOnSave": {
+  //     "source.fixAll.eslint": true
+  // },
+  // "eslint.codeActionsOnSave.mode": "all",
+  // "eslint.validate": [
+  //   "javascript",
+  //   "javascriptreact",
+  //   "typescript",
+  //   "typescriptreact",
+  //   "vue"
+  // ],
+  // "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "files.eol": "\n",
+  "files.trimTrailingWhitespace": true,
+  "files.trimFinalNewlines": true,
+  // 关闭自动更新
+  "update.enableWindowsBackgroundUpdates": false,
+  "update.mode": "none",
+  "extensions.autoCheckUpdates": false,
+  "extensions.autoUpdate": false,
+  "diffEditor.ignoreTrimWhitespace": false,
+  "workbench.startupEditor": "newUntitledFile"
+}
