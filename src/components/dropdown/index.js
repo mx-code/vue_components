@@ -15,7 +15,7 @@ export default {
   render() {
     const self = this,
       { $slots, data = [], value } = self,
-      attrs = self.$props;
+      attrs = { ...self.$props };
 
     return (
       <me-dropdown

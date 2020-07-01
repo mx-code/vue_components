@@ -58,7 +58,7 @@ export default {
             : columns.map((item) => (
                 <me-table-column
                   key={item.key || item.prop || item.label}
-                  attrs={item}
+                  attrs={{ ...item }}
                   scopedSlots={scopedSlots}
                 ></me-table-column>
               ))}

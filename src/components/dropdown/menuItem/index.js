@@ -9,7 +9,7 @@ export default {
   props,
   render() {
     const self = this,
-      attrs = self.$props;
+      attrs = { ...self.$props };
 
     return (
       <el-dropdown-item class='me-dropdown-item' attrs={attrs}>

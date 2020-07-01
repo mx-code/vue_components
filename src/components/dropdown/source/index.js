@@ -10,7 +10,7 @@ export default {
   render() {
     const self = this,
       { $slots } = self,
-      attrs = self.$props;
+      attrs = { ...self.$props };
 
     return (
       <el-dropdown

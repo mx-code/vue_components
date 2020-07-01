@@ -15,7 +15,7 @@ export default {
     const self = this,
       { to, text, icon, appendIcon } = self,
       ComponentName = to ? 'meRouterLink' : 'meLink',
-      attrs = self.$props;
+      attrs = { ...self.$props };
 
     return (
       <ComponentName attrs={attrs} isSub={true} on-click={self.onClick}>

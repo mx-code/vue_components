@@ -13,7 +13,7 @@ export default {
   render() {
     const self = this,
       { children = [] } = self,
-      attrs = self.$props,
+      attrs = { ...self.$props },
       cLen = children?.length;
 
     const scopedSlots = {

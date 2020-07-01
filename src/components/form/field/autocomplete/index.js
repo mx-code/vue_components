@@ -4,8 +4,8 @@ export default {
   props,
   render() {
     const self = this,
-      { $scopedSlots, $slots, $props } = self,
-      attrs = $props,
+      { $scopedSlots, $slots } = self,
+      attrs = { ...self.$props },
       scopedSlots = {
         default: $scopedSlots.default
       };

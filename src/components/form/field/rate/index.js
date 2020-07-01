@@ -9,7 +9,7 @@ export default {
   props,
   render() {
     const self = this,
-      attrs = self.$props;
+      attrs = { ...self.$props };
 
     return <el-rate attrs={attrs} on-change={self.onChange}></el-rate>;
   },

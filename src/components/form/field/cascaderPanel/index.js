@@ -9,7 +9,7 @@ export default {
   props,
   render() {
     const self = this,
-      attrs = self.$props,
+      attrs = { ...self.$props },
       scopedSlots = {
         default: self.$scopedSlots.default
       };

@@ -9,7 +9,7 @@ export default {
   props,
   render() {
     const self = this,
-      attrs = self.$props;
+      attrs = { ...self.$props };
 
     return (
       <el-radio-button attrs={attrs}>{self.$slots.default}</el-radio-button>

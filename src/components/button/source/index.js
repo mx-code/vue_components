@@ -13,7 +13,7 @@ export default {
   render() {
     const self = this,
       { text, icon, appendIcon } = self,
-      attrs = self.$props;
+      attrs = { ...self.$props };
 
     return (
       <el-button attrs={attrs} on-click={(event) => self.$emit('click', event)}>

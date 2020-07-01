@@ -10,12 +10,12 @@ export default {
   render() {
     const self = this,
       { $slots } = self,
-      attrs = self.$props;
+      attrs = { ...self.$props };
 
     return (
       <el-input
         ref='input'
-        attrs={attrs}
+        attrs={{ ...attrs }}
         on-input={self.onInput}
         on-blur={self.onBlur}
         on-focus={self.onFocus}

@@ -15,7 +15,7 @@ export default {
   render() {
     const self = this,
       { $slots, options = [], labelKey, valueKey } = self,
-      attrs = self.$props;
+      attrs = { ...self.$props };
 
     const getOption = (args) => {
       const attrs =
