@@ -5,20 +5,16 @@
       :form="form"
       :formOpts="{ labelWidth: '150px' }"
     >
-      <template slot-scope="scope">
-        <me-test :prop="scope.prop" :remoteData="remoteData"></me-test>
-      </template>
+      <template slot-scope="scope"> </template>
     </me-form>
   </div>
 </template>
 <script>
-  const meForm = () => import('@/components/form'),
-    meTest = () => import('./test');
+  const meForm = () => import('@/components/form');
 
   export default {
     components: {
-      meForm,
-      meTest
+      meForm
     },
     data() {
       return {
@@ -54,25 +50,8 @@
             label: 'sex',
             prop: 'sex'
           }
-        ],
-        remoteData: {}
+        ]
       };
-    },
-    created() {
-      setTimeout(() => {
-        this.remoteData = this.remoteData.toCopy({
-          good: [
-            {
-              label: 'qqq',
-              value: '111'
-            },
-            {
-              label: 'wwww',
-              value: '222'
-            }
-          ]
-        });
-      }, 3000);
     }
   };
 </script>

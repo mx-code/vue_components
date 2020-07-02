@@ -1,4 +1,4 @@
-import {props} from './props.config';
+import { props } from './props.config';
 import comConfig from './component.config';
 
 const meButton = () => import('@/components/button'),
@@ -38,38 +38,37 @@ export default {
   props,
   render() {
     const self = this,
-      {data,prop,remoteData = {}, meType = '', meOption = {} } = self,
+      { data, prop, type = '', options = {} } = self,
       vmValue = data[prop],
-      {hrefKey,routeKey} = meOption;
-      // hrefKey给link设置href
-      // routeKey给routerLink设置to
+      { hrefKey, routeKey } = options;
+    // hrefKey给link设置href
+    // routeKey给routerLink设置to
 
-    if(meType === 'text' || !meType){
+    if (type === 'text' || !type) {
       return <span class='me-middleware--text'>{vmValue}</span>;
     }
 
-    const
-      {comName,valueKey,remoteKey} = comConfig[meType],
+    const { comName, valueKey } = comConfig[type],
       ComName = comName;
 
     // 给子组件设置的valueKey赋值
-    valueKey && (meOption[valueKey] = vmValue);
-    hrefKey && (meOption.href = data[hrefKey]);
-    routeKey && (meOption.to = data[routeKey]);
-    // 动态改变某些值
-    remoteKey  && remoteData[prop] && (meOption[remoteKey] = remoteData[prop]);
-    remoteData[prop + 'Disabled'] && (meOption.disabled = remoteData[prop + 'Disabled']);
-    remoteData[prop + 'Readonly'] && (meOption.disabled = remoteData[prop + 'Readonly']);
+    valueKey && (options[valueKey] = vmValue);
+    hrefKey && (options.href = data[hrefKey]);
+    routeKey && (options.to = data[routeKey]);
 
-    // 这里还没有做参数过滤
     return (
-      <ComName attrs={meOption} isSub={true} on-input={self.onInput} on-callback={self.onCallback} />
+      <ComName
+        attrs={options}
+        isSub={true}
+        on-input={self.onInput}
+        on-callback={self.onCallback}
+      />
     );
   },
   methods: {
-    onInput(value){
+    onInput(value) {
       // this.$updateValue(value);
-      const {data,prop} = this;
+      const { data, prop } = this;
 
       data[prop] = value;
     },

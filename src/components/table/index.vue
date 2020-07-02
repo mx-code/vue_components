@@ -11,12 +11,13 @@
       <middleware
         :data="scope.row"
         :prop="scope.column.property"
-        :remoteData="remoteData"
-        :middlewareOption="middlewareOption"
+        :middlewareOption="middlewareOption[scope.column.property]"
         :isInputing="
           inputRows.includes(scope.row) &&
           inputProps.includes(scope.column.property)
         "
+        :useForm="useForm"
+        :form="form"
         :isSub="true"
       ></middleware>
     </template>
@@ -48,16 +49,15 @@
         type: Object,
         default: () => ({})
       },
-      remoteData: {
-        type: Object,
-        default: () => ({})
-        // 改变会触发所有更新  待优化
-      },
       middlewareOption: {
         type: Object,
         default: () => ({})
-        // 改变会触发所有更新  待优化
-      }
+      },
+      useForm: {
+        type: Boolean,
+        default: false
+      },
+      form: Object
     },
     data() {
       return {

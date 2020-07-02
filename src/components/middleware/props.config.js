@@ -1,4 +1,5 @@
-const fieldArr = [ 'autocomplete',
+const fieldArr = [
+    'autocomplete',
     'cascader',
     'checkbox',
     'date',
@@ -10,25 +11,22 @@ const fieldArr = [ 'autocomplete',
     'slider',
     'switch',
     'time',
-    'upload' ],
-  typeArr = [ 'button',
-    'link',
-    'text',...fieldArr ];
+    'upload'
+  ],
+  typeArr = ['button', 'link', 'text', ...fieldArr];
 
-const props =  {
+const props = {
   data: Object,
   prop: String,
-  remoteData: Object,
-  meType: {
+  type: {
     type: String,
     validator: (value) => typeArr.includes(value)
   },
-  meOption: Object,
+  options: Object,
   isSub: {
     type: Boolean,
     default: false
   }
 };
 
-
-export {props,fieldArr};
+export { props, fieldArr };

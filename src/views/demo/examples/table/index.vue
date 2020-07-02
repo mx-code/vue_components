@@ -29,7 +29,6 @@
           test: '',
           fn: ''
         },
-        remoteData: {},
         columns: [
           {
             label: 'good',

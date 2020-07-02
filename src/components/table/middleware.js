@@ -11,15 +11,11 @@ export default {
       required: true
     },
     prop: String,
-    remoteData: {
-      type: Object,
-      default: () => ({})
-    },
     middlewareOption: {
       type: Object,
       default: () => ({})
     },
-    isForm: {
+    useForm: {
       type: Boolean,
       default: false
     },
@@ -31,24 +27,15 @@ export default {
   },
   render() {
     const self = this,
-      {
-        data,
-        prop,
-        remoteData,
-        middlewareOption,
-        isForm,
-        form,
-        isInputing
-      } = self,
-      { type, formType = 'input', option } = middlewareOption[prop] || {};
+      { data, prop, middlewareOption = {}, useForm, form, isInputing } = self,
+      { type, formType = 'input', options } = middlewareOption;
 
     return (
       <middleware
-        data={isInputing && isForm ? form : data}
+        data={isInputing && useForm ? form : data}
         prop={prop}
-        remoteData={remoteData}
-        meType={isInputing ? formType : type}
-        meOption={option}
+        type={isInputing ? formType : type}
+        options={options}
         isSub={true}
       ></middleware>
     );
